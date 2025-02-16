@@ -1,32 +1,36 @@
-
-// testing GitHub action
+import java.util.UUID;
 
 class Calculator {
 
+    // Constructor
     Calculator(){
-
     }
 
+    // Method to add two integers
     int add(int a , int b){
         return a + b;
     }
 
+    // Method to subtract two integers
     int subtract(int a , int b){
         return a - b;
     }
 
+    // Method to multiply two integers
     int multiply(int a , int b){
         return a * b;
     }
 
+    // Method to divide two integers
     int divide(int a , int b){
+        if (b == 0) {
+            throw new ArithmeticException("Division by zero is not allowed");
+        }
         return a / b;
     }
 
-
     /*
-    Returns the n'th number in the fibonacci sequence
-    https://en.wikipedia.org/wiki/Fibonacci_number
+    Returns the n'th number in the Fibonacci sequence
     Example below
     n = x
     1 = 1
@@ -34,38 +38,34 @@ class Calculator {
     3 = 2
     4 = 3
     5 = 5
-    .
-    .
-    .
-    etc
-     */
+    . . .
+    */
     int fibonacciNumberFinder(int n){
-        return 0;
+        if (n <= 1) return n;
+        int a = 0, b = 1;
+        for (int i = 2; i <= n; i++) {
+            int temp = a + b;
+            a = b;
+            b = temp;
+        }
+        return b;
     }
 
-
     /*
-    Returns binary value of the given int number
-    The binary number will be stored as a string
-    if int a = 0 then this method returns: 0
-    if int a = 10 then this method returns: 1010
-    if int a = 16 then this method returns: 10000
-     */
+    Returns the binary value of the given int number as a string
+    Example: int a = 10 -> returns "1010"
+    */
     String intToBinaryNumber(int number){
-        return null;
+        return Integer.toBinaryString(number);
     }
 
     /*
-    Create a completely unique String identifier for a given string
-    Each createdID must contain the string n in its unaltered Form
-    if String n = "Jason"
-    then the created ID could be = Jasonklfgn3jknnvksdfm - Because it contains the unaltered String n and is unique
-
-    if you run this function twice with the same String input, it must return 2 unique String IDs
-     */
+    Creates a completely unique String identifier for a given string
+    Each created ID must contain the string n in its unaltered form
+    */
     String createUniqueID(String n){
-        return null;
+        String uniquePart = UUID.randomUUID().toString().replace("-", "");
+        return n + uniquePart;
     }
-
 
 }
